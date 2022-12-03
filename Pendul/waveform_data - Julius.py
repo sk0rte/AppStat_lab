@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv('Pendul\Data\pendul_forsøg2.csv', header=14).drop(columns=['Channel 2 (V)']).rename(columns={'Time (s)': 't', 'Channel 1 (V)': 'A'})
+data = pd.read_csv('/Home\sk0rt3\Appstat projekt\AppStat_lab\Pendul\Data\pendul_forsøg2.csv', header=14).drop(columns=['Channel 2 (V)']).rename(columns={'Time (s)': 't', 'Channel 1 (V)': 'A'})
 
 idx = 1
 peaks = []
@@ -49,7 +49,7 @@ minuit = Minuit(chi2_owncalc, b=3.0, a=0.0)     # Own alternative
 minuit.migrad()
 p = 1/minuit.values['a']
 ep = minuit.errors['a']/minuit.values['a']**2
-
+#Og så siger vi DNUR!
 print(f'{p:.5f} pm {ep:.5f}')
 
 
