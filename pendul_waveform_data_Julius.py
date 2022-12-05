@@ -51,6 +51,7 @@ p = 1/minuit.values['a']
 ep = minuit.errors['a']/minuit.values['a']**2
 
 if __name__ == '__main__':
+    print(data['t'][1]-data['t'][0])
     print((y_fit-y).std())
     #Og så siger vi DNUR!
     print(f'{p:.5f} pm {ep:.5f}')
@@ -59,12 +60,12 @@ if __name__ == '__main__':
     plt.figure()
     plt.plot('t', 'A', data=data)
     plt.plot(peaks, np.ones_like(peaks), '.')
-    plt.show()
+    # plt.show()
 
     # residual plot from fit
     plt.figure()
     plt.errorbar(x, y_fit-y, yerr=ey, fmt='.')
-    plt.show()
+    # plt.show()
 
     def gauss_pdf(x, mu, sigma):
         """Normalized Gaussian"""
@@ -76,4 +77,9 @@ if __name__ == '__main__':
     plt.figure()
     plt.hist(y_fit-y, bins=np.arange(-.01, 0.0101, 0.001), histtype='step')
     plt.plot(xx, yy)
+
+    peaks = np.array(peaks)
+    plt.figure()
+    plt.plot((peaks[1:]-peaks[:-1]+(1/80)) % (1/40) - 1/80, '.')
+
     plt.show()
